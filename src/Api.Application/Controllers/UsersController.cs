@@ -46,7 +46,11 @@ namespace Api.Application.Controllers
 
             try
             {
-                return Ok(await _Service.GetById(id));
+                var result = await _Service.GetById(id);
+                if (result == null)
+                    return NotFound();
+
+                return Ok(result);
             }
             catch (ArgumentException err)
             {
@@ -66,9 +70,8 @@ namespace Api.Application.Controllers
             {
                 var result = await _Service.Create(user);
                 if (result == null)
-                {
                     return BadRequest();
-                }
+
                 return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
             }
             catch (ArgumentException err)
@@ -89,10 +92,29 @@ namespace Api.Application.Controllers
             {
                 var result = await _Service.Update(user);
                 if (result == null)
-                {
                     return BadRequest();
-                }
+
                 return Ok(result);
+            }
+            catch (ArgumentException err)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, err.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<ActionResult> Destroy(Guid id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var deleted = await _Service.Delete(id);
+                return Ok(new { deleted });
             }
             catch (ArgumentException err)
             {
