@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Domain.Entities;
-using Api.Domain.Interfaces;
-using Api.Domain.Interfaces.Services.User;
+using Api.Domain.Interfaces.Repositories;
+using Api.Domain.Interfaces.Services;
 
 namespace Api.Service.Services
 {
     public class UserService : IUserService
     {
-        private IRepository<UserEntity> _Repository;
+        private IUserRepository _Repository;
 
-        public UserService(IRepository<UserEntity> repository)
+        public UserService(IUserRepository repository)
         {
             _Repository = repository;
         }
@@ -21,7 +21,12 @@ namespace Api.Service.Services
             return await _Repository.DeleteAsync(id);
         }
 
-        public async Task<UserEntity> Get(Guid id)
+        public async Task<UserEntity> GetByEmail(string email)
+        {
+            return await _Repository.SelectAsync(email);
+        }
+
+        public async Task<UserEntity> GetById(Guid id)
         {
             return await _Repository.SelectAsync(id);
         }

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Api.Domain.Entities;
 
-namespace Api.Domain.Interfaces.Services.User
+namespace Api.Domain.Interfaces.Services
 {
     public interface IUserService
     {
-        Task<UserEntity> Get(Guid id);
+        Task<UserEntity> GetByEmail(string email);
+
+        Task<UserEntity> GetById(Guid id);
 
         Task<IEnumerable<UserEntity>> GetAll();
 

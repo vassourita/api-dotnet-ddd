@@ -1,4 +1,4 @@
-using Api.Domain.Interfaces.Services.User;
+using Api.Domain.Interfaces.Services;
 using Api.Service.Services;
 using Microsoft.Extensions.DependencyInjection;
 
