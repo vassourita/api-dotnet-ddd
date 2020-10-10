@@ -13,9 +13,9 @@ namespace Api.Domain.Interfaces.Services
 
         Task<IEnumerable<UserEntity>> GetAll();
 
-        Task<UserEntity> Post(UserEntity user);
+        Task<UserEntity> Create(UserEntity user);
 
-        Task<UserEntity> Put(UserEntity user);
+        Task<UserEntity> Update(UserEntity user);
 
         Task<bool> Delete(Guid id);
     }

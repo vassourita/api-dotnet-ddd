@@ -11,39 +11,28 @@ namespace Api.Service.Services
     {
         private IUserRepository _Repository;
 
-        public UserService(IUserRepository repository)
-        {
-            _Repository = repository;
-        }
+        public UserService(IUserRepository repository) => _Repository = repository;
 
-        public async Task<bool> Delete(Guid id)
-        {
-            return await _Repository.DeleteAsync(id);
-        }
+        public async Task<bool> Delete(Guid id) => await _Repository.DeleteAsync(id);
 
-        public async Task<UserEntity> GetByEmail(string email)
-        {
-            return await _Repository.SelectAsync(email);
-        }
+        public async Task<UserEntity> GetByEmail(string email) => await _Repository.SelectAsync(email);
 
-        public async Task<UserEntity> GetById(Guid id)
-        {
-            return await _Repository.SelectAsync(id);
-        }
+        public async Task<UserEntity> GetById(Guid id) => await _Repository.SelectAsync(id);
 
-        public async Task<IEnumerable<UserEntity>> GetAll()
-        {
-            return await _Repository.SelectAsync();
-        }
+        public async Task<IEnumerable<UserEntity>> GetAll() => await _Repository.SelectAsync();
 
-        public async Task<UserEntity> Post(UserEntity user)
+        public async Task<UserEntity> Create(UserEntity user)
         {
+            var userExists = await _Repository.ExistAsync(u => u.Email == user.Email);
+            if (userExists)
+            {
+                return null;
+            }
+
             return await _Repository.InsertAsync(user);
         }
 
-        public async Task<UserEntity> Put(UserEntity user)
-        {
-            return await _Repository.UpdateAsync(user);
-        }
+        public async Task<UserEntity> Update(UserEntity user) => await _Repository.UpdateAsync(user);
+
     }
 }

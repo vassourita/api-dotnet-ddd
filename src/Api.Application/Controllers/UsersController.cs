@@ -64,7 +64,7 @@ namespace Api.Application.Controllers
 
             try
             {
-                var result = await _Service.Post(user);
+                var result = await _Service.Create(user);
                 if (result != null)
                 {
                     return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
