@@ -55,7 +55,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] UserEntity user)
+        public async Task<ActionResult> Store([FromBody] UserEntity user)
         {
             if (!ModelState.IsValid)
             {
@@ -65,14 +65,34 @@ namespace Api.Application.Controllers
             try
             {
                 var result = await _Service.Create(user);
-                if (result != null)
-                {
-                    return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
-                }
-                else
+                if (result == null)
                 {
                     return BadRequest();
                 }
+                return Created(new Uri(Url.Link("GetWithId", new { id = result.Id })), result);
+            }
+            catch (ArgumentException err)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, err.Message);
+            }
+        }
+
+        [HttpPut]
+        public async Task<ActionResult> Update([FromBody] UserEntity user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                var result = await _Service.Update(user);
+                if (result == null)
+                {
+                    return BadRequest();
+                }
+                return Ok(result);
             }
             catch (ArgumentException err)
             {
