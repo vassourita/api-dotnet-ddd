@@ -19,7 +19,7 @@ namespace Api.Data.Repositories
         {
             try
             {
-                return await _DataSet.SingleOrDefaultAsync(x => x.Email.Equals(email));
+                return await _DataSet.FirstOrDefaultAsync(x => x.Email.Equals(email));
             }
             catch (Exception err)
             {
