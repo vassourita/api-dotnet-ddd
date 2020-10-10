@@ -21,9 +21,7 @@ namespace Api.Application.Controllers
         public async Task<ActionResult> Index()
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             try
             {
@@ -40,9 +38,7 @@ namespace Api.Application.Controllers
         public async Task<ActionResult> Show(Guid id)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             try
             {
@@ -62,9 +58,7 @@ namespace Api.Application.Controllers
         public async Task<ActionResult> Store([FromBody] UserEntity user)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             try
             {
@@ -84,9 +78,7 @@ namespace Api.Application.Controllers
         public async Task<ActionResult> Update([FromBody] UserEntity user)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             try
             {
@@ -107,9 +99,7 @@ namespace Api.Application.Controllers
         public async Task<ActionResult> Destroy(Guid id)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             try
             {

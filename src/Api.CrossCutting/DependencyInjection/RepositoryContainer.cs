@@ -10,6 +10,7 @@ namespace Api.CrossCutting.DependencyInjection
     {
         public static void ConfigureRepositoryDependencies(IServiceCollection serviceCollection)
         {
+            serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
             serviceCollection.AddDbContext<MyContext>(
