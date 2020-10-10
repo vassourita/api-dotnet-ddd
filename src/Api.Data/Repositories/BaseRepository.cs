@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Api.Data.Context;
 using Api.Domain.Entities;
@@ -59,10 +60,8 @@ namespace Api.Data.Repositories
             return item;
         }
 
-        public async Task<bool> ExistAsync(Guid id)
-        {
-            return await _DataSet.AnyAsync(x => x.Id.Equals(id));
-        }
+        public async Task<bool> ExistAsync(Expression<Func<T, bool>> predicate) => await _DataSet.AnyAsync(predicate);
+
 
         public async Task<T> SelectAsync(Guid id)
         {
