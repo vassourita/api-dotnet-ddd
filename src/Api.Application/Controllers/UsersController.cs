@@ -2,7 +2,7 @@ using System;
 using System.Net;
 using System.Threading.Tasks;
 using Api.Domain.Entities;
-using Api.Domain.Interfaces.Services.User;
+using Api.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
@@ -36,7 +36,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpGet]
-        [Route("{id}", Name = "GetWithId")]
+        [Route("{id:guid}", Name = "GetWithId")]
         public async Task<ActionResult> Show(Guid id)
         {
             if (!ModelState.IsValid)
@@ -46,7 +46,7 @@ namespace Api.Application.Controllers
 
             try
             {
-                return Ok(await _Service.Get(id));
+                return Ok(await _Service.GetById(id));
             }
             catch (ArgumentException err)
             {
