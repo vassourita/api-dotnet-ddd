@@ -4,9 +4,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Api.CrossCutting.DependencyInjection
 {
-    public class ConfigureService
+    public class ServiceContainer
     {
-        public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
+        public static void ConfigureServiceDependencies(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IUserService, UserService>();
         }
