@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 4001,
+            "driver": "MySQL",
+            "name": "api-dotnet-ddd",
+            "database": "api_dotnet_ddd",
+            "username": "root",
+            "password": "docker"
+        }
+    ]
+}
