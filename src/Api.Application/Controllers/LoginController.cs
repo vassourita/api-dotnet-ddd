@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Api.Domain.Entities;
+using Api.Domain.DTOs;
 using Api.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,17 +18,17 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<object> Login([FromBody] UserEntity user)
+        public async Task<object> Login([FromBody] LoginDTO loginInfo)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (user == null)
+            if (loginInfo == null)
                 return BadRequest();
 
             try
             {
-                var result = await _Service.Login(user);
+                var result = await _Service.Login(loginInfo);
                 if (result == null)
                     return NotFound();
                 return Ok(result);

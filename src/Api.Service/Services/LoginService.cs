@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using Api.Domain.Entities;
+using Api.Domain.DTOs;
 using Api.Domain.Interfaces.Repositories;
 using Api.Domain.Interfaces.Services;
 
@@ -13,12 +13,12 @@ namespace Api.Service.Services
         {
             _Repository = repository;
         }
-        public async Task<object> Login(UserEntity user)
+        public async Task<object> Login(LoginDTO loginInfo)
         {
-            if (user == null || string.IsNullOrWhiteSpace(user.Email))
+            if (loginInfo == null || string.IsNullOrWhiteSpace(loginInfo.Email))
                 return null;
 
-            return await _Repository.SelectByEmailAsync(user.Email);
+            return await _Repository.SelectByEmailAsync(loginInfo.Email);
         }
     }
 }
