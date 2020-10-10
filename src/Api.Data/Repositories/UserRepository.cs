@@ -15,7 +15,7 @@ namespace Api.Data.Repositories
             _DataSet = _Context.Set<UserEntity>();
         }
 
-        public async Task<UserEntity> SelectAsync(string email)
+        public async Task<UserEntity> SelectByEmailAsync(string email)
         {
             try
             {

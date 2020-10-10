@@ -15,7 +15,7 @@ namespace Api.Service.Services
 
         public async Task<bool> Delete(Guid id) => await _Repository.DeleteAsync(id);
 
-        public async Task<UserEntity> GetByEmail(string email) => await _Repository.SelectAsync(email);
+        public async Task<UserEntity> GetByEmail(string email) => await _Repository.SelectByEmailAsync(email);
 
         public async Task<UserEntity> GetById(Guid id) => await _Repository.SelectAsync(id);
 

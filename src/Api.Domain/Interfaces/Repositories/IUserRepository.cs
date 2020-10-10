@@ -5,6 +5,6 @@ namespace Api.Domain.Interfaces.Repositories
 {
     public interface IUserRepository : IRepository<UserEntity>
     {
-        Task<UserEntity> SelectAsync(string email);
+        Task<UserEntity> SelectByEmailAsync(string email);
     }
 }
