@@ -1,7 +1,7 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
-using Api.Domain.Entities;
+using Api.Domain.DTOs.User;
 using Api.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -58,7 +58,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Store([FromBody] UserEntity user)
+        public async Task<ActionResult> Store([FromBody] UserDTO user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -79,7 +79,7 @@ namespace Api.Application.Controllers
 
         [HttpPut]
         [Authorize("Bearer")]
-        public async Task<ActionResult> Update([FromBody] UserEntity user)
+        public async Task<ActionResult> Update([FromBody] UserDTO user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

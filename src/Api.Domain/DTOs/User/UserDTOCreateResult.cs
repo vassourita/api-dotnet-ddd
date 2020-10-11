@@ -4,7 +4,7 @@ namespace Api.Domain.DTOs.User
 {
     public class UserDTOCreateResult
     {
-        public Guid id { get; set; }
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 
