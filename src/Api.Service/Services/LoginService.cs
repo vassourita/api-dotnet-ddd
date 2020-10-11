@@ -35,17 +35,19 @@ namespace Api.Service.Services
         public async Task<object> Login(LoginDTO loginInfo)
         {
             if (loginInfo == null || string.IsNullOrWhiteSpace(loginInfo.Email))
-                return null;
-
-            var user = await _Repository.SelectByEmailAsync(loginInfo.Email);
-            if (user == null)
-            {
                 return new
                 {
                     authenticated = false,
                     message = "Authentication failed"
                 };
-            }
+
+            var user = await _Repository.SelectByEmailAsync(loginInfo.Email);
+            if (user == null)
+                return new
+                {
+                    authenticated = false,
+                    message = "Authentication failed"
+                };
 
             var identity = new ClaimsIdentity(
                 new GenericIdentity(user.Email),

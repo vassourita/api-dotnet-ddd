@@ -3,12 +3,14 @@ using System.Net;
 using System.Threading.Tasks;
 using Api.Domain.DTOs;
 using Api.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Application.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
     public class LoginController : ControllerBase
     {
         private readonly ILoginService _Service;
