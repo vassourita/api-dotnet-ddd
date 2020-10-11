@@ -13,9 +13,9 @@ namespace Api.Domain.Interfaces.Services
 
         Task<IEnumerable<UserDTO>> GetAll();
 
-        Task<UserDTOCreateResult> Create(UserDTO userInfo);
+        Task<UserDTOCreateResult> Create(UserCreateDTO userInfo);
 
-        Task<UserDTOUpdateResult> Update(UserDTO userInfo);
+        Task<UserDTOUpdateResult> Update(UserUpdateDTO userInfo);
 
         Task<bool> Delete(Guid id);
     }

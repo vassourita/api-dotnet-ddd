@@ -58,7 +58,7 @@ namespace Api.Application.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> Store([FromBody] UserDTO user)
+        public async Task<ActionResult> Store([FromBody] UserCreateDTO user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -79,7 +79,7 @@ namespace Api.Application.Controllers
 
         [HttpPut]
         [Authorize("Bearer")]
-        public async Task<ActionResult> Update([FromBody] UserDTO user)
+        public async Task<ActionResult> Update([FromBody] UserUpdateDTO user)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

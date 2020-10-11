@@ -42,7 +42,7 @@ namespace Api.Service.Services
             return _Mapper.Map<IEnumerable<UserDTO>>(entities);
         }
 
-        public async Task<UserDTOCreateResult> Create(UserDTO userInfo)
+        public async Task<UserDTOCreateResult> Create(UserCreateDTO userInfo)
         {
             var userExists = await _Repository.ExistAsync(u => u.Email == userInfo.Email);
             if (userExists)
@@ -57,7 +57,7 @@ namespace Api.Service.Services
             return _Mapper.Map<UserDTOCreateResult>(result);
         }
 
-        public async Task<UserDTOUpdateResult> Update(UserDTO userInfo)
+        public async Task<UserDTOUpdateResult> Update(UserUpdateDTO userInfo)
         {
             var model = _Mapper.Map<UserModel>(userInfo);
             var entity = _Mapper.Map<UserEntity>(model);
