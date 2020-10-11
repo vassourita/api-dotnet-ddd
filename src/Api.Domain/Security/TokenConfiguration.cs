@@ -4,7 +4,7 @@ namespace Api.Domain.Security
     {
         public string Audience { get; set; }
 
-        public string Issues { get; set; }
+        public string Issuer { get; set; }
 
         public int Seconds { get; set; }
     }
