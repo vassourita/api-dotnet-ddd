@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Api.CrossCutting.DependencyInjection;
 using Api.Domain.Security;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -74,6 +75,29 @@ namespace Api.Application
                         Email = "vlviniciusguaruja7@gmail.com",
                         Name = "Vinicius Vassão",
                         Url = new Uri("https://github.com/vassourita")
+                    }
+                });
+
+                swagger.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "Use a JWT Token",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                swagger.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        },
+                        new List<string>()
                     }
                 });
             });
