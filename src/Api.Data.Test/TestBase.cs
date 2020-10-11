@@ -24,7 +24,7 @@ namespace Api.Data.Test
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddDbContext<MyContext>(opt =>
-                opt.UseMySql($"Persist Security Info=True;Server=localhost;Database={DatabaseName};User=root;Password=change@123"), ServiceLifetime.Transient
+                opt.UseMySql($"Persist Security Info=True;Server=localhost;Port=4001;Database={DatabaseName};User=root;Password=docker"), ServiceLifetime.Transient
             );
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
