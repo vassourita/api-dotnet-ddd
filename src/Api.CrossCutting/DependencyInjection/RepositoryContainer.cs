@@ -1,3 +1,4 @@
+using System;
 using Api.Data.Context;
 using Api.Data.Repositories;
 using Api.Domain.Interfaces.Repositories;
@@ -13,9 +14,16 @@ namespace Api.CrossCutting.DependencyInjection
             serviceCollection.AddScoped(typeof(IRepository<>), typeof(BaseRepository<>));
             serviceCollection.AddScoped(typeof(IUserRepository), typeof(UserRepository));
 
-            serviceCollection.AddDbContext<MyContext>(
-                opt => opt.UseMySql("Server=localhost;Port=4001;Database=api_dotnet_ddd;Uid=root;Pwd=docker")
-            );
+            if (Environment.GetEnvironmentVariable("DB_DIALECT").ToLower() == "mysql")
+            {
+                serviceCollection.AddDbContext<MyContext>(
+                    opt => opt.UseMySql(Environment.GetEnvironmentVariable("DB_CONNECTION"))
+                );
+            }
+            else
+            {
+                throw new NotImplementedException("Only MySQL Databases are configured on this project");
+            }
         }
     }
 }
